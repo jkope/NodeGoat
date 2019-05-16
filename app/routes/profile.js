@@ -20,10 +20,10 @@ function ProfileHandler(db) {
             // while the developer intentions were correct in encoding the user supplied input so it
             // doesn't end up as an XSS attack, the context is incorrect as it is encoding the firstname for HTML
             // while this same variable is also used in the context of a URL link element
-            doc.firstNameSafeString = ESAPI.encoder().encodeForHTML(doc.firstName)
+            // doc.firstNameSafeString = ESAPI.encoder().encodeForHTML(doc.firstName)
             // fix it by replacing the above with another template variable that is used for 
             // the context of a URL in a link header
-            // doc.doc.firstNameSafeURLString = ESAPI.encoder().encodeForURL(urlInput)
+            doc.doc.firstNameSafeURLString = ESAPI.encoder().encodeForURL(urlInput)
 
             return res.render("profile", doc);
         });
@@ -45,8 +45,8 @@ function ProfileHandler(db) {
         // with an exponential time until it completes
         // --
         // The Fix: Instead of using greedy quantifiers the same regex will work if we omit the second quantifier +
-        // var regexPattern = /([0-9]+)\#/;
-        var regexPattern = /([0-9]+)+\#/;
+        var regexPattern = /([0-9]+)\#/;
+        // var regexPattern = /([0-9]+)+\#/;
         // Allow only numbers with a suffix of the letter #, for example: 'XXXXXX#'
         var testComplyWithRequirements = regexPattern.test(bankRouting);
         // if the regex test fails we do not allow saving
